@@ -12,5 +12,3 @@ def create_chessboard(size=8):
    odd_line = even_line[::-1]
    
    print('\n'.join(even_line if line % 2 else odd_line for line in range(size)))
-
-create_chessboard(4)
