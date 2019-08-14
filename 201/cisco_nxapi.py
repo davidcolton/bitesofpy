@@ -41,3 +41,7 @@ def nxapi_show_version():
 if __name__ == '__main__':
     result = nxapi_show_version()
     print(result)
+
+
+# For reference
+# https://www.ciscolive.com/c/dam/r/ciscolive/apjc/docs/2016/pdf/DEVNET-1077.pdf
