@@ -40,7 +40,5 @@ def time_between_shutdowns(loglines):
     fisrt_time = convert_to_datetime(loglines[first_idx])
     last_time = convert_to_datetime(loglines[last_idx])
 
-    print(fisrt_time, last_time)
-
     return last_time - fisrt_time
 
