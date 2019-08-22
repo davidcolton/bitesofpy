@@ -28,6 +28,6 @@ def get_us_bank_holidays(content=content):
             holiday_month = holiday_date.split("-")[1]
             holiday_name = row.find("a").text
             holidays[holiday_month].append(holiday_name)
-        except:
+        except AttributeError:
             pass
     return holidays
