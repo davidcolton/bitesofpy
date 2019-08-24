@@ -6,8 +6,6 @@ import requests
 
 CSV_URL = "https://raw.githubusercontent.com/pybites/SouthParkData/master/by-season/Season-{}.csv"  # noqa E501
 
-spoken_words = defaultdict(Counter)
-
 
 def get_season_csv_file(season):
     """Receives a season int, and downloads loads in its
@@ -22,6 +20,7 @@ def get_num_words_spoken_by_character_per_episode(content):
        keys=characters and values=Counter object,
        which is a mapping of episode=>words spoken"""
     # Read the given csv string and del the header line
+    spoken_words = defaultdict(Counter)
     script_lines = csv.reader(content.splitlines(keepends=True))
 
     # Iterate over each speaking line details
@@ -36,6 +35,7 @@ def get_num_words_spoken_by_character_per_episode(content):
     return spoken_words
 
 
-# content = get_season_csv_file(season=1)
-# print(content.splitlines(keepends=True))
-# get_num_words_spoken_by_character_per_episode(content)
+# content = get_season_csv_file(season=5)
+# words_spoken_s5 = get_num_words_spoken_by_character_per_episode(content)
+# print(words_spoken_s5["Sheila"].most_common()[:3])
+
