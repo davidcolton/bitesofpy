@@ -19,6 +19,7 @@ class Color:
 
     def __init__(self, color):
         self.rgb = COLOR_NAMES.get(color.upper(), None)
+        self.color = color.lower()
 
     @classmethod
     def hex2rgb(cls, hex):
@@ -39,8 +40,8 @@ class Color:
 
     def __repr__(self):
         """Returns the repl of the object"""
-        pass
+        return f"Color('{self.color}')"
 
     def __str__(self):
         """Returns the string value of the color object"""
-        pass
+        return str(self.rgb)
