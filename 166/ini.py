@@ -33,4 +33,9 @@ class ToxIniParser:
     @property
     def base_python_versions(self):
         """Return a list of all basepython across the ini file"""
-        pass
+        base_python_values = set()
+        for section_name in self.parser.sections():
+            for name, value in self.parser.items(section_name):
+                if name == "basepython":
+                    base_python_values.add(value)
+        return list(base_python_values)
