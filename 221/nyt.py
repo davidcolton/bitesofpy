@@ -1,5 +1,4 @@
 import requests
-import json
 
 YOUR_KEY = "cFDzrATPJVp1AnAA8K2Z0S8Cp2avl1le"
 DEFAULT_LIST = "hardcover-nonfiction"
@@ -11,7 +10,7 @@ URL_NON_FICTION = (
 URL_FICTION = URL_NON_FICTION.replace("nonfiction", "fiction")
 
 
-def get_best_seller_titles(url=URL_NON_FICTION):
+def get_best_seller_titles(url=URL_FICTION):
     """Use the NY Times Books API endpoint above to get the titles that are
        on the best seller list for the longest time.
 
@@ -27,7 +26,7 @@ def get_best_seller_titles(url=URL_NON_FICTION):
        Dev docs: https://developer.nytimes.com/docs/books-product/1/overview
     """
     response = requests.get(url)
-    json_data = json.loads(response.text)
+    json_data = response.json()
 
     topsellers = json_data["results"]["books"]
     title_weeks = []
