@@ -1,35 +1,37 @@
 class Matrix(object):
     def __init__(self, values):
         self.values = values
+        self.col = len(self.values[0])
+        self.row = len(self.values)
 
     def __repr__(self):
         return f'<Matrix values="{self.values}">'
 
-    @property
-    def cols(self):
-        # The number of values in the x-axis of the matrix
-        # We can get this as the length of the first list
-        #    in the matrix
-        return len(self.values[0])
-
-    @property
-    def rows(self):
-        # The number of values in the y-axis of the matrix
-        # We can get this as the total number of lists in the list
-        return len(self.values)
-
     def __matmul__(self, other):
+        if self.col != other.row:
+            raise ValueError(
+                ("Numbers rows first matrix != number columns " "second matrix")
+            )
         # Create a empty result list of the required size
         # It is assumed that compatible lists are provided
         #    but size checking could be added here
-        result = [[0 for i in range(other.cols)] for j in range(self.rows)]
+        result = [[0 for i in range(other.col)] for j in range(self.row)]
 
         # iterate through rows of X
-        for i in range(self.rows):
+        for i in range(self.row):
             # iterate through columns of Y
-            for j in range(other.cols):
+            for j in range(other.col):
                 # iterate through rows of Y
-                for k in range(other.rows):
+                for k in range(other.row):
                     result[i][j] += self.values[i][k] * other.values[k][j]
 
         return Matrix(result)
+
+    def __rmatmul__(self, other_mat):
+        new_self = Matrix(self.values)
+        return new_self @ other_mat
+
+    def __imatmul__(self, other_mat):
+        self.values = self.__matmul__(other_mat).values
+        return self
+
