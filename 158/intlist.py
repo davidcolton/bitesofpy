@@ -9,33 +9,24 @@ class IntList(list):
 
     @property
     def mean(self):
-        return mean([i for i in super().__iter__()])
+        return mean(self)
 
     @property
     def median(self):
-        return median([i for i in super().__iter__()])
+        return median(self)
 
     def append(self, item):
-        try:
-            item = self.validate(item)
-            super().append(item)
-        except TypeError:
-            raise
+        item = self.validate(item)
+        super().append(item)
 
     def __add__(self, item):
-        try:
-            item = self.validate(item)
-            super().__add__(item)
-        except TypeError:
-            raise
+        item = self.validate(item)
+        super().__add__(item)
 
     def __iadd__(self, item):
-        try:
-            item = self.validate(item)
-            super().__iadd__(item)
-            return self
-        except TypeError:
-            raise
+        item = self.validate(item)
+        super().__iadd__(item)
+        return self
 
     def validate(self, item):
         if isinstance(item, (int, float, Decimal)):
