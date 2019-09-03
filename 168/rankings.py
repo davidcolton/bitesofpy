@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from typing import List, Tuple
 import heapq
 
+# https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/
+
 bites: List[int] = [283, 282, 281, 263, 255, 230, 216, 204, 197, 196, 195]
 names: List[str] = [
     "snow",
