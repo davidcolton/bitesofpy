@@ -13,7 +13,7 @@ class BiteStats:
         return DictReader(open(data))
 
     def __init__(self, data=DATA):
-        self.rows = self._load_data(data)
+        self.rows = [row for row in self._load_data(data)]
 
     @property
     def number_bites_accessed(self) -> int:
