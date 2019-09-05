@@ -24,7 +24,7 @@ def get_most_complex_bites(N=10, stats=stats):
     with open(stats, "r") as f:
         lines = [line.strip() for line in f.readlines() if line is not None]
 
-    pattern_str = r"^Bite (?P<bite>\d+).*;(?P<score>.*)$"
+    pattern_str = r"^Bite (\d+).*;(.*)$"
     pattern = re.compile(pattern_str)
 
     for line in lines:
