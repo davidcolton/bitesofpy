@@ -57,14 +57,17 @@ def high_low_record_breakers_for_2015():
     # Iterate over the month-days and Station ID Values
     for my_date in unique_dates:
         for my_id in unique_ids:
-            # Create a temporary table based on month-days and Station ID Values
-            df_temp = df[(df["month_day"] == my_date) & (df["ID"] == my_id)].copy()
-            # Sort the temporary table [MAX at top MIN at bottom]
-            df_temp = df_temp.sort_values(
-                by=["Data_Value", "Date"], ascending=[False, True]
-            )
-            # Max value
             try:
+                # Create a temporary table based on month-days and Station ID Values
+                # df_temp = df[(df["month_day"] == my_date) & (df["ID"] == my_id)].copy()
+                date_match = df["month_day"] == my_date
+                id_match = df["ID"] == my_id
+                mask = date_match & id_match
+                df_temp = df[mask].copy()
+                # Sort the temporary table [MAX at top MIN at bottom]
+                df_temp = df_temp.sort_values(
+                    by=["Data_Value", "Date"], ascending=[False, True]
+                )
                 # If the first value is 2015 we have a record
                 if df_temp.iloc[0, :]["year"] == "2015":
                     my_date_obj = df_temp.iloc[0, :]["date_obj"]
@@ -76,9 +79,13 @@ def high_low_record_breakers_for_2015():
                     my_data_value = df_temp.iloc[-1, :]["Data_Value"]
                     record_dates.append(STATION(my_id, my_date_obj, my_data_value))
             except IndexError:
-                pass
+                # 05-21 USC00205450 missing
+                # 12-15 USC00205450 missing
+                continue
     return (
         max(record_dates, key=lambda k: k.Value),
         min(record_dates, key=lambda k: k.Value),
     )
 
+
+high_low_record_breakers_for_2015()
