@@ -11,9 +11,8 @@ if not path.isfile(EXCEL):
 def load_excel_into_dataframe(excel=EXCEL):
     """Load the SalesOrders sheet of the excel book (EXCEL variable)
        into a Pandas DataFrame and return it to the caller"""
-    df = pd.read_excel(
-        open(EXCEL, "rb"), sheet_name="SalesOrders", index_col=None, parse_dates=True
-    )
+    df = pd.read_excel(open(EXCEL, "rb"), sheet_name="SalesOrders")
+    df["OrderDate"] = pd.to_datetime(df["OrderDate"])
     return df
 
 
