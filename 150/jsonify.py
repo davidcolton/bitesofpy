@@ -29,6 +29,3 @@ def convert_to_json(members=members):
     ]
 
     return json.dumps(d)"""
-
-
-# data = json.loads(convert_to_json())
