@@ -23,7 +23,7 @@ def get_income_distribution(xml=countries):
     income_dist = defaultdict(list)
     with open(xml, "r") as f:
         contents = f.read()
-        soup = bs(contents, "lxml")
+        soup = bs(contents, "html")
         countries = soup.find_all(r"wb:country")
         for country in countries:
             income_level = country.find(r"wb:incomelevel").text
