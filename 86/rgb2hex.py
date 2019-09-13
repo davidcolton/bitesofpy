@@ -13,5 +13,5 @@ def rgb_to_hex(rgb):
        Silver: input tuple = (192,192,192) -> output hex str = #C0C0C0"""
     if _validate_rgb_tuple(rgb):
         r, g, b = rgb
-        return "#{r:02x}{g:02x}{b:02x}".upper()
+        return f"#{r:02x}{g:02x}{b:02x}".upper()
 
