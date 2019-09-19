@@ -231,6 +231,7 @@ class Corpora:
             for item in self.extra:
                 text = text.replace(item, " ")
         # This is a realy nice way I found to use string.punctuation with re
+        # https://stackoverflow.com/a/34294022
         text = re.sub("[" + string.punctuation + "]", "", text)
         return text
 
