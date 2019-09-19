@@ -1,50 +1,49 @@
 import string
 import re
 
-code_bite_description = '''
-"""this is
-my awesome script
-"""
-# importing modules
-import re
-
-def hello(name):
-    """my function docstring"""
-    return f'hello {name}'  # my inline comment
-'''
-
-
-def _strip_comments_simple(code):
-    return re.sub(r"#.*\n", "", code)
-    """cleaned_code = ""
-    for line in code.split("\n"):
-        if not line.strip().startswith("#"):
-            cleaned_code = cleaned_code + line + "\n"
-    return str(cleaned_code)"""
-
-
-def _strip_comments_docstring(code):
-    return re.sub(r'\s*""".*"""', "", code, re.DOTALL)
-
-
-def _strip_comments_inline(code):
-    return re.sub(r"\s\s#.*\n$", "", code)
-    """cleaned_code = ""
-    for line in code.split("\n"):
-        if line.find("  #"):
-            index = line.find(r"  #")
-            cleaned_code += f"{line[:index]}\n"
-        else:
-            cleaned_code = cleaned_code + line + "\n"
-    return cleaned_code"""
-
 
 def strip_comments(code):
     # see Bite description
-    code = _strip_comments_simple(code)
-    code = _strip_comments_inline(code)
-    code = _strip_comments_docstring(code)
-    print(code)
+    cleaned_code = []
+    in_docstring = 0
+    for line in code.split("\n"):
 
+        # Not currently in a docstring or multi-line comment
+        if in_docstring % 2 == 0:
 
-strip_comments(code_bite_description)
+            # Simple comment at start of line
+            if re.search("^[\s]*#.*$", line):
+                # ignore
+                next
+
+            # Comments mid-line
+            elif line.find("  #") > 0:
+                index = line.find("  #")
+                cleaned_code.append(line[:index])
+
+            # Strip single line docstring
+            elif len(re.findall('"""', line)) == 2:
+                # ignore
+                pass
+
+            # A single line docstring
+            elif len(re.findall('"""', line)) == 2:
+                # ignore
+                pass
+
+            # The opening marker for docstring or multi-line comment
+            elif len(re.findall('"""', line)) == 1:
+                # ignore
+                in_docstring += 1
+                pass
+
+            else:
+                cleaned_code.append(line)
+
+        elif in_docstring % 2 == 1:
+            if len(re.findall('"""', line)) == 1:
+                # ignore
+                in_docstring += 1
+                pass
+
+    return "\n".join(cleaned_code)
