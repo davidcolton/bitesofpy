@@ -1,5 +1,6 @@
 from collections import namedtuple
 import os
+import re
 import pickle
 import urllib.request
 
@@ -47,12 +48,32 @@ def get_most_popular_talks_by_like_ratio(videos):
     )
 
 
+def _extract_video_seconds(video):
+    # There is always a minute time component
+    pattern = re.compile(r"(?P<hour>\d{0,2}H)?(?P<min>\d{0,2}M)(?P<sec>\d{0,2}S)?")
+    videotime = pattern.search(video.duration)
+
+    # Get seconds if available else initial value of 0
+    seconds = int(videotime.group("sec")[:-1]) if videotime.group("sec") else 0
+    # Always have minutes and add
+    seconds += int(videotime.group("min")[:-1]) * 60
+    # Are there hours
+    seconds += (
+        int(videotime.group("hour")[:-1]) * 3600 if videotime.group("hour") else 0
+    )
+
+    return seconds
+
+
 def get_talks_gt_one_hour(videos):
     """Filter the videos list down to videos of > 1 hour"""
-    pass
+    # Return videos longer than 3600 seconds [60mins * 60sec]
+    return [my_video for my_video in videos if _extract_video_seconds(my_video) >= 3600]
 
 
 def get_talks_lt_twentyfour_min(videos):
     """Filter videos list down to videos that have a duration of less than
        24 minutes"""
-    pass
+    # Return videos shorter than 1440 seconds [24mins * 60sec]
+    return [my_video for my_video in videos if _extract_video_seconds(my_video) < 1440]
+
