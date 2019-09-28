@@ -55,6 +55,3 @@ def get_email_details(header: str) -> dict:
         return_dict[key] = res
 
     return return_dict
-
-
-print(get_email_details(OTHER_HEADER))
