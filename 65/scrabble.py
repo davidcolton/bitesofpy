@@ -14,14 +14,19 @@ def get_possible_dict_words(draw):
     """Get all possible words from a draw (list of letters) which are
        valid dictionary words. Use _get_permutations_draw and provided
        dictionary"""
-    tokens = _get_permutations_draw(draw)
-    return [token.lower() for token in tokens if token.lower() in dictionary]
+    return [
+        token.lower()
+        for token in _get_permutations_draw(draw)
+        if token.lower() in dictionary
+    ]
 
 
 def _get_permutations_draw(draw):
     """Helper to get all permutations of a draw (list of letters), hint:
        use itertools.permutations (order of letters matters)"""
     return [
-        "".join(x) for y in range(1, len(draw) + 1) for x in list(permutations(draw, y))
+        "".join(word)
+        for perm in range(1, len(draw) + 1)
+        for word in list(permutations(draw, perm))
     ]
 
