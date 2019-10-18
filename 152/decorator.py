@@ -22,12 +22,12 @@ def strip_range(start, end):
 
     def real_decorator(func):
         @wraps(func)
-        def wrapper(text):
+        def wrapper(*args, **kwargs):
             strip_text = ""
-            if start > len(text):
-                return func(text)
+            if start > len(kwargs["text"]):
+                return func(*args, **kwargs)
             strip_range = list(range(start, end))
-            for idx, char in enumerate(text):
+            for idx, char in enumerate(kwargs["text"]):
                 if idx in strip_range:
                     strip_text += DOT
                 else:
