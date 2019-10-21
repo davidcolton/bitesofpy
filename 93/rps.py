@@ -14,7 +14,11 @@ def _get_computer_move():
 def _get_winner(computer_choice, player_choice):
     """Return above lose/win/tie strings populated with the
        appropriate values (computer vs player)"""
-    if computer_choice == player_choice:
+    if player_choice == "q":
+        raise RuntimeError
+    elif player_choice not in defeated_by.keys():
+        result = "Invalid choice, please go again"
+    elif computer_choice == player_choice:
         result = tie
     elif defeated_by[computer_choice] == player_choice:
         result = win.format(player_choice, computer_choice)
@@ -28,10 +32,8 @@ def game():
        send method and get a random move from computer (_get_computer_move).
        Raise a StopIteration exception if user value received = 'q'.
        Check who wins with _get_winner and print its return output."""
-    yield "Welcome to Rock Paper Scissors"
+    result = "Welcome to Rock Paper Scissors"
     while True:
-        computer_choice = _get_computer_move()
-        player_choice = yield
-        if player_choice == "q":
-            raise RuntimeError
-        print(_get_winner(computer_choice, player_choice))
+        player_choice = yield result
+        result = _get_winner(_get_computer_move(), player_choice)
+        print(result)
