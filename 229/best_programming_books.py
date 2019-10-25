@@ -120,8 +120,7 @@ def load_data():
 
 def main():
     books = load_data()
-    print(books)
-    # display_books(books, limit=5, year=2017)
+    display_books(books, limit=5, year=2017)
     """If done correctly, the previous function call should display the
     output below.
     """
