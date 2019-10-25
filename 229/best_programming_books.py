@@ -58,7 +58,6 @@ def display_books(books, limit=10, year=None):
     :return: None
     """
     books_displayed = 0
-    books = load_data()
     for book in books:
         if year == None or book.year >= year:
             print(book)
