@@ -2,17 +2,12 @@ import operator
 
 
 def get_operator_fn(op):
-    try:
-        return {
-            "+": operator.add,
-            "-": operator.sub,
-            "*": operator.mul,
-            "/": operator.truediv,
-            # "%": operator.mod,
-            # "^": operator.xor,
-        }[op]
-    except KeyError:
-        raise ValueError
+    return {
+        "+": operator.add,
+        "-": operator.sub,
+        "*": operator.mul,
+        "/": operator.truediv,
+    }[op]
 
 
 def simple_calculator(calculation):
@@ -27,9 +22,11 @@ def simple_calculator(calculation):
 
        Make sure you convert both numbers to ints.
        If bad data is passed in, raise a ValueError.
+       
+       https://stackoverflow.com/questions/1740726/turn-string-into-operator
     """
-    op1, op, op2 = calculation.split(" ")
     try:
+        op1, op, op2 = calculation.split(" ")
         return get_operator_fn(op)(int(op1), int(op2))
     except:
         raise ValueError
