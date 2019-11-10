@@ -21,7 +21,10 @@ def two_sums(numbers, target):
 
     # Populate DefaultDict with pairs that match total
     for num_pair in product(num_and_index, num_and_index):
-        if num_pair[0].index != num_pair[1].index:
+        if (
+            num_pair[0].index != num_pair[1].index
+            and num_pair[0].number + num_pair[1].number == target
+        ):
             total = num_pair[0].number + num_pair[1].number
             sum_of_two[total].append(NumIdxPair(num_pair[0], num_pair[1]))
 
