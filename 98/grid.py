@@ -13,18 +13,6 @@ MOVE_UP = GridMove(-1, 0)
 
 grid_moves = {MOVE_RIGHT: RIGHT, MOVE_DOWN: DOWN, MOVE_LEFT: LEFT, MOVE_UP: UP}
 
-small_grid = """
-21 - 22 - 23 - 24 - 25
- |
-20    7 -  8 -  9 - 10
- |    |              |
-19    6    1 -  2   11
- |    |         |    |
-18    5 -  4 -  3   12
- |                   |
-17 - 16 - 15 - 14 - 13
-"""
-
 
 def _create_list_of_lines(grid):
     lol = []
@@ -76,9 +64,3 @@ def print_sequence_route(grid, start_coordinates=None):
             print_line = f""
 
     print(f"{print_line}{max(grid_dict)}")
-    """print(
-        (grid_dict[6].line - grid_dict[5].line), (grid_dict[6].pos - grid_dict[5].pos)
-    )"""
-
-
-print_sequence_route(small_grid)
