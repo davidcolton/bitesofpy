@@ -1,4 +1,5 @@
-import math
+from decimal import Decimal
+from decimal import ROUND_DOWN
 
 
 def check_split(item_total, tax_rate, tip, people):
@@ -12,21 +13,27 @@ def check_split(item_total, tax_rate, tip, people):
        :return: tuple of (grand_total: str, splits: list)
                 e.g. ('$10.00', [3.34, 3.33, 3.33])
     """
-    total_float = float(item_total[1:])
-    tax_rate_float = float(tax_rate[:-1]) / 100
-    tip_float = float(tip[:-1]) / 100
+    total = Decimal(item_total[1:])
+    tax_percent = Decimal(tax_rate[:-1]) / 100
+    tip_percent = Decimal(tip[:-1]) / 100
 
-    total_plus_tax = round(total_float + total_float * tax_rate_float, 2)
-    total_plus_tip = round(total_plus_tax + total_plus_tax * tip_float, 2)
+    total_plus_tax = (total + total * tax_percent).quantize(Decimal(".01"))
+    total_plus_tip = (total_plus_tax + total_plus_tax * tip_percent).quantize(
+        Decimal(".01")
+    )
 
-    cost_per_person = math.floor((total_plus_tip / people) * 100) / 100
+    cost_per_person = (total_plus_tip / people).quantize(
+        Decimal(".01"), rounding=ROUND_DOWN
+    )
     list_of_splits = [cost_per_person] * people
 
     if total_plus_tip != sum(list_of_splits):
-        diff = round(total_plus_tip - sum(list_of_splits), 2)
+        diff = (total_plus_tip - sum(list_of_splits)).quantize(Decimal(".01"))
+
         pay_extra = 0
         while diff > 0:
-            list_of_splits[pay_extra] += 0.01
-            diff -= 0.01
+            list_of_splits[pay_extra] += Decimal(0.01)
+            diff -= Decimal(0.01)
             pay_extra += 1
+    print(total_plus_tip, list_of_splits)
     return f"${total_plus_tip:.2f}", list_of_splits
