@@ -44,4 +44,4 @@ class Color:
 
     def __str__(self):
         """Returns the string value of the color object"""
-        return str(self.rgb)
+        return str(self.rgb) if self.rgb else "Unknown"
