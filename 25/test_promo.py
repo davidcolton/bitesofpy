@@ -53,3 +53,31 @@ def test_raise_exception_if_no_more_bites(promo):
     # exhausted bites
     with pytest.raises(NoBitesAvailable):
         promo._pick_random_bite()
+
+
+@pytest.fixture
+def promo_02():
+    """Make a fresh new promo object for each test"""
+    return Promo(bites_done=bites_done.copy())
+
+
+@pytest.fixture
+def promo_03():
+    """Make a fresh new promo object for each test"""
+    return Promo(bites_done=bites_done.copy())
+
+
+def test_random_bite_is_returned(promo, promo_02, promo_03):
+    bite_01 = promo.new_bite()
+    bite_02 = promo_02.new_bite()
+    bite_03 = promo_03.new_bite()
+    assert bite_01 != bite_02 or bite_01 != bite_03
+
+
+import inspect
+
+
+def test_random_is_used(promo):
+    src = inspect.getsource(promo._pick_random_bite)
+    assert "sample" in src or "choice" in src
+
