@@ -29,11 +29,11 @@ def check_split(item_total, tax_rate, tip, people):
 
     if total_plus_tip != sum(list_of_splits):
         diff = (total_plus_tip - sum(list_of_splits)).quantize(Decimal(".01"))
-
         pay_extra = 0
         while diff > 0:
-            list_of_splits[pay_extra] += Decimal(0.01)
+            list_of_splits[pay_extra] = (
+                list_of_splits[pay_extra] + Decimal(0.01)
+            ).quantize(Decimal(".01"))
             diff -= Decimal(0.01)
             pay_extra += 1
-    print(total_plus_tip, list_of_splits)
     return f"${total_plus_tip:.2f}", list_of_splits
