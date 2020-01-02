@@ -1,0 +1,265 @@
+[*] Start mutation process:
+   - targets: account
+   - tests: /tmp/test_account.py
+[*] 9 tests passed:
+   - test_account [0.12459 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR account: 
+--------------------------------------------------------------------------------
+  25:         self._transactions.append(amount)
+  26:     
+  27:     @property
+  28:     def balance(self):
+- 29:         return self.amount + sum(self._transactions)
++ 29:         return self.amount - sum(self._transactions)
+  30:     
+  31:     def __len__(self):
+  32:         return len(self._transactions)
+  33:     
+--------------------------------------------------------------------------------
+[0.12042 s] killed by test_account.py::test_balance
+   - [#   2] AOR account: 
+--------------------------------------------------------------------------------
+  41:         return self.balance < other.balance
+  42:     
+  43:     def __add__(self, other):
+  44:         owner = '{}&{}'.format(self.owner, other.owner)
+- 45:         start_amount = self.amount + other.amount
++ 45:         start_amount = self.amount - other.amount
+  46:         acc = Account(owner, start_amount)
+  47:         for t in list(self) + list(other):
+  48:             acc.add_transaction(t)
+  49:         return acc
+--------------------------------------------------------------------------------
+[0.10003 s] killed by test_account.py::test_merge_account
+   - [#   3] AOR account: 
+--------------------------------------------------------------------------------
+  43:     def __add__(self, other):
+  44:         owner = '{}&{}'.format(self.owner, other.owner)
+  45:         start_amount = self.amount + other.amount
+  46:         acc = Account(owner, start_amount)
+- 47:         for t in list(self) + list(other):
++ 47:         for t in list(self) - list(other):
+  48:             acc.add_transaction(t)
+  49:         return acc
+--------------------------------------------------------------------------------
+[0.10011 s] incompetent
+   - [#   4] COD account: 
+--------------------------------------------------------------------------------
+  19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+- 23:         if not (isinstance(amount, int)):
++ 23:         if isinstance(amount, int):
+  24:             raise ValueError('please use int for amount')
+  25:         self._transactions.append(amount)
+  26:     
+  27:     @property
+--------------------------------------------------------------------------------
+[0.11709 s] killed by test_account.py::test_balance
+   - [#   5] COI account: 
+--------------------------------------------------------------------------------
+  19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+- 23:         if not (isinstance(amount, int)):
++ 23:         if not ((not (isinstance(amount, int)))):
+  24:             raise ValueError('please use int for amount')
+  25:         self._transactions.append(amount)
+  26:     
+  27:     @property
+--------------------------------------------------------------------------------
+[0.11089 s] killed by test_account.py::test_balance
+   - [#   6] CRP account: 
+--------------------------------------------------------------------------------
+   5: @total_ordering
+   6: class Account:
+   7:     '''A simple account class'''
+   8:     
+-  9:     def __init__(self, owner, amount=0):
++  9:     def __init__(self, owner, amount=1):
+  10:         '''This is the constructor that lets us create objects from this class'''
+  11:         self.owner = owner
+  12:         self.amount = amount
+  13:         self._transactions = []
+--------------------------------------------------------------------------------
+[0.09470 s] killed by test_account.py::test_balance
+   - [#   7] CRP account: 
+--------------------------------------------------------------------------------
+  12:         self.amount = amount
+  13:         self._transactions = []
+  14:     
+  15:     def __repr__(self):
+- 16:         return 'Account({!r}, {!r})'.format(self.owner, self.amount)
++ 16:         return 'mutpy'.format(self.owner, self.amount)
+  17:     
+  18:     def __str__(self):
+  19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
+  20:             self.amount)
+--------------------------------------------------------------------------------
+[0.09643 s] killed by test_account.py::test_repr
+   - [#   8] CRP account: 
+--------------------------------------------------------------------------------
+  12:         self.amount = amount
+  13:         self._transactions = []
+  14:     
+  15:     def __repr__(self):
+- 16:         return 'Account({!r}, {!r})'.format(self.owner, self.amount)
++ 16:         return ''.format(self.owner, self.amount)
+  17:     
+  18:     def __str__(self):
+  19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
+  20:             self.amount)
+--------------------------------------------------------------------------------
+[0.09736 s] killed by test_account.py::test_repr
+   - [#   9] CRP account: 
+--------------------------------------------------------------------------------
+  15:     def __repr__(self):
+  16:         return 'Account({!r}, {!r})'.format(self.owner, self.amount)
+  17:     
+  18:     def __str__(self):
+- 19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
++ 19:         return 'mutpy'.format(self.owner, 
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+  23:         if not (isinstance(amount, int)):
+--------------------------------------------------------------------------------
+[0.09909 s] killed by test_account.py::test_str
+   - [#  10] CRP account: 
+--------------------------------------------------------------------------------
+  15:     def __repr__(self):
+  16:         return 'Account({!r}, {!r})'.format(self.owner, self.amount)
+  17:     
+  18:     def __str__(self):
+- 19:         return 'Account of {} with starting amount: {}'.format(self.owner, 
++ 19:         return ''.format(self.owner, 
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+  23:         if not (isinstance(amount, int)):
+--------------------------------------------------------------------------------
+[0.09923 s] killed by test_account.py::test_str
+   - [#  11] CRP account: 
+--------------------------------------------------------------------------------
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+  23:         if not (isinstance(amount, int)):
+- 24:             raise ValueError('please use int for amount')
++ 24:             raise ValueError('mutpy')
+  25:         self._transactions.append(amount)
+  26:     
+  27:     @property
+  28:     def balance(self):
+--------------------------------------------------------------------------------
+[0.09799 s] survived
+   - [#  12] CRP account: 
+--------------------------------------------------------------------------------
+  20:             self.amount)
+  21:     
+  22:     def add_transaction(self, amount):
+  23:         if not (isinstance(amount, int)):
+- 24:             raise ValueError('please use int for amount')
++ 24:             raise ValueError('')
+  25:         self._transactions.append(amount)
+  26:     
+  27:     @property
+  28:     def balance(self):
+--------------------------------------------------------------------------------
+[0.09931 s] survived
+   - [#  13] CRP account: 
+--------------------------------------------------------------------------------
+  40:     def __lt__(self, other):
+  41:         return self.balance < other.balance
+  42:     
+  43:     def __add__(self, other):
+- 44:         owner = '{}&{}'.format(self.owner, other.owner)
++ 44:         owner = 'mutpy'.format(self.owner, other.owner)
+  45:         start_amount = self.amount + other.amount
+  46:         acc = Account(owner, start_amount)
+  47:         for t in list(self) + list(other):
+  48:             acc.add_transaction(t)
+--------------------------------------------------------------------------------
+[0.10067 s] killed by test_account.py::test_merge_account
+   - [#  14] CRP account: 
+--------------------------------------------------------------------------------
+  40:     def __lt__(self, other):
+  41:         return self.balance < other.balance
+  42:     
+  43:     def __add__(self, other):
+- 44:         owner = '{}&{}'.format(self.owner, other.owner)
++ 44:         owner = ''.format(self.owner, other.owner)
+  45:         start_amount = self.amount + other.amount
+  46:         acc = Account(owner, start_amount)
+  47:         for t in list(self) + list(other):
+  48:             acc.add_transaction(t)
+--------------------------------------------------------------------------------
+[0.10083 s] killed by test_account.py::test_merge_account
+   - [#  15] DDL account: 
+--------------------------------------------------------------------------------
+  23:         if not (isinstance(amount, int)):
+  24:             raise ValueError('please use int for amount')
+  25:         self._transactions.append(amount)
+  26:     
+- 27:     @property
+- 28:     def balance(self):
++ 27:     def balance(\
++ 28:         self):
+  29:         return self.amount + sum(self._transactions)
+  30:     
+  31:     def __len__(self):
+  32:         return len(self._transactions)
+--------------------------------------------------------------------------------
+[0.10240 s] killed by test_account.py::test_balance
+   - [#  16] ROR account: 
+--------------------------------------------------------------------------------
+  34:     def __getitem__(self, position):
+  35:         return self._transactions[position]
+  36:     
+  37:     def __eq__(self, other):
+- 38:         return self.balance == other.balance
++ 38:         return self.balance != other.balance
+  39:     
+  40:     def __lt__(self, other):
+  41:         return self.balance < other.balance
+  42:     
+--------------------------------------------------------------------------------
+[0.09937 s] killed by test_account.py::test_comparison
+   - [#  17] ROR account: 
+--------------------------------------------------------------------------------
+  37:     def __eq__(self, other):
+  38:         return self.balance == other.balance
+  39:     
+  40:     def __lt__(self, other):
+- 41:         return self.balance < other.balance
++ 41:         return self.balance > other.balance
+  42:     
+  43:     def __add__(self, other):
+  44:         owner = '{}&{}'.format(self.owner, other.owner)
+  45:         start_amount = self.amount + other.amount
+--------------------------------------------------------------------------------
+[0.09987 s] killed by test_account.py::test_comparison
+   - [#  18] ROR account: 
+--------------------------------------------------------------------------------
+  37:     def __eq__(self, other):
+  38:         return self.balance == other.balance
+  39:     
+  40:     def __lt__(self, other):
+- 41:         return self.balance < other.balance
++ 41:         return self.balance <= other.balance
+  42:     
+  43:     def __add__(self, other):
+  44:         owner = '{}&{}'.format(self.owner, other.owner)
+  45:         start_amount = self.amount + other.amount
+--------------------------------------------------------------------------------
+[0.10084 s] survived
+[*] Mutation score [7.08526 s]: 82.4%
+   - all: 18
+   - killed: 14 (77.8%)
+   - survived: 3 (16.7%)
+   - incompetent: 1 (5.6%)
+   - timeout: 0 (0.0%)
+[*] Coverage: 240 of 240 AST nodes (100.0%)
