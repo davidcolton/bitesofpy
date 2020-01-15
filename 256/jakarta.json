@@ -1,0 +1,17 @@
+{
+    "@context": "http://schema.org",
+    "@type": "Event",
+    "location": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jakarta",
+            "addressCountry": "Indonesia"
+        },
+        "name": "Jakarta, Indonesia"
+    },
+    "name": "PyCon",
+    "startDate": "2018-11-03",
+    "url": "https://pycon.id/",
+    "endDate": "2018-11-04"
+}
