@@ -61,6 +61,7 @@ def strike_score(frames, frame):
 def frame_ten_score(frames, frame):
     # Start by getting the score for each bowl:
     final_frame_score = 0
+    last_ball_score = 0
     frame_score = frames[frames_idx[frame][0] : frames_idx[frame][-1] + 1]
     for idx, score in enumerate(frame_score):
         if score == strike:
@@ -68,7 +69,10 @@ def frame_ten_score(frames, frame):
         elif score == spare and idx == 1:
             final_frame_score = 10
         elif score == spare and idx == 2:
-            final_frame_score += 9
+            if final_frame_score % 10:
+                final_frame_score += 10 - final_frame_score % 10
+            else:
+                final_frame_score += 10
         elif score == gutter:
             continue
         elif score.isdigit():
