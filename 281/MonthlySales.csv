@@ -1,0 +1,18 @@
+{
+  "name": "MonthlySales.csv",
+  "path": "MonthlySales.csv",
+  "sha": "04132f71295d3fd0222998d795f9a592d8c8a356",
+  "size": 1018,
+  "url": "https://api.github.com/repos/bsullins/data/contents/MonthlySales.csv?ref=master",
+  "html_url": "https://github.com/bsullins/data/blob/master/MonthlySales.csv",
+  "git_url": "https://api.github.com/repos/bsullins/data/git/blobs/04132f71295d3fd0222998d795f9a592d8c8a356",
+  "download_url": "https://raw.githubusercontent.com/bsullins/data/master/MonthlySales.csv",
+  "type": "file",
+  "content": "bW9udGgsc2FsZXMNCjIwMTMtMDEtMDEsMTQyMzYuOQ0KMjAxMy0wMi0wMSw0\nNTE5Ljg5DQoyMDEzLTAzLTAxLDU1NjkxLjAxDQoyMDEzLTA0LTAxLDI4Mjk1\nLjM1DQoyMDEzLTA1LTAxLDIzNjQ4LjI5DQoyMDEzLTA2LTAxLDM0NTk1LjEz\nDQoyMDEzLTA3LTAxLDMzOTQ2LjM5DQoyMDEzLTA4LTAxLDI3OTA5LjQ3DQoy\nMDEzLTA5LTAxLDgxNzc3LjM1DQoyMDEzLTEwLTAxLDMxNDUzLjM5DQoyMDEz\nLTExLTAxLDc4NjI4LjcyDQoyMDEzLTEyLTAxLDY5NTQ1LjYyDQoyMDE0LTAx\nLTAxLDE4MTc0LjA4DQoyMDE0LTAyLTAxLDExOTUxLjQxDQoyMDE0LTAzLTAx\nLDM4NzI2LjI1DQoyMDE0LTA0LTAxLDM0MTk1LjIxDQoyMDE0LTA1LTAxLDMw\nMTMxLjY5DQoyMDE0LTA2LTAxLDI0Nzk3LjI5DQoyMDE0LTA3LTAxLDI4NzY1\nLjMzDQoyMDE0LTA4LTAxLDM2ODk4LjMzDQoyMDE0LTA5LTAxLDY0NTk1Ljky\nDQoyMDE0LTEwLTAxLDMxNDA0LjkyDQoyMDE0LTExLTAxLDc1OTcyLjU2DQoy\nMDE0LTEyLTAxLDc0OTE5LjUyDQoyMDE1LTAxLTAxLDE4NTQyLjQ5DQoyMDE1\nLTAyLTAxLDIyODY3LjcxDQoyMDE1LTAzLTAxLDUxMTg2LjIyDQoyMDE1LTA0\nLTAxLDM5MjQ4LjU5DQoyMDE1LTA1LTAxLDU2NjkxLjA4DQoyMDE1LTA2LTAx\nLDM5NDMwLjQ0DQoyMDE1LTA3LTAxLDM4NDQwLjc2DQoyMDE1LTA4LTAxLDMz\nMjY1LjU2DQoyMDE1LTA5LTAxLDcyOTA4LjExDQoyMDE1LTEwLTAxLDU2NDYz\nLjEzDQoyMDE1LTExLTAxLDgyMTkyLjMyDQoyMDE1LTEyLTAxLDk3MjM3LjQy\nDQoyMDE2LTAxLTAxLDQ0NzAzLjE0DQoyMDE2LTAyLTAxLDIwMzAxLjEzDQoy\nMDE2LTAzLTAxLDU4ODcyLjM1DQoyMDE2LTA0LTAxLDM2NTIxLjU0DQoyMDE2\nLTA1LTAxLDQ0MjYxLjExDQoyMDE2LTA2LTAxLDUyOTgxLjczDQoyMDE2LTA3\nLTAxLDQ1MjY0LjQyDQoyMDE2LTA4LTAxLDYzMTIwLjg5DQoyMDE2LTA5LTAx\nLDg3ODY2LjY1DQoyMDE2LTEwLTAxLDc3Nzc2LjkyDQoyMDE2LTExLTAxLDEx\nODQ0Ny44Mw0KMjAxNi0xMi0wMSw4MzgyOS4zMg==\n",
+  "encoding": "base64",
+  "_links": {
+    "self": "https://api.github.com/repos/bsullins/data/contents/MonthlySales.csv?ref=master",
+    "git": "https://api.github.com/repos/bsullins/data/git/blobs/04132f71295d3fd0222998d795f9a592d8c8a356",
+    "html": "https://github.com/bsullins/data/blob/master/MonthlySales.csv"
+  }
+}
