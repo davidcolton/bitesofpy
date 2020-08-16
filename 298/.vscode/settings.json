@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/Users/davidcolton/.pyenv/shims/python"
+    "python.pythonPath": "/Users/davidcolton/.pyenv/shims/python",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }

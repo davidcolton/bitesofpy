@@ -1,6 +1,5 @@
 import os
 import urllib
-from pathlib import Path
 from Bio import SeqIO
 
 # Fetched and truncated from
@@ -18,11 +17,14 @@ def fasta_to_2line_fasta(fasta_file: str, fasta_2line_file: str) -> int:
     :param fasta_2line_file: Filename of 2-line FASTA file
     :return: Number of records
     """
-    p = Path(fasta_2line_file)
-    f = p.open("a")
-    for record in SeqIO.parse(fasta_file, "fasta"):
-        f.write(f">{str(record.description)}\n")
-        f.write(f"{str(record.seq)}\n")
+    count = 0
+    with open(fasta_2line_file, "w") as f:
+        for record in SeqIO.parse(fasta_file, "fasta"):
+            f.write(f">{str(record.description)}\n")
+            f.write(f"{str(record.seq)}\n")
+            count += 1
+
+    return count
 
 
 if __name__ == "__main__":
