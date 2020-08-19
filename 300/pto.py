@@ -30,7 +30,7 @@ def four_day_weekend_report(df, pto):
     print_text = f"{title:^24}\n"
     print_text += f"{'=' * 24}\n"
     print_text += f"    PTO: {pto} ({int(pto / 8)} days)\n"
-    print_text += f"BALANCE: {pto - total_hours_all_four_day_weekend}"
+    print_text += f"BALANCE: {pto - total_hours_all_four_day_weekend} "
     print_text += (
         f"({abs(int((pto - total_hours_all_four_day_weekend) // 8))} days)\n\n"
     )

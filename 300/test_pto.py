@@ -18,8 +18,8 @@ def test_four_day_weekends_default(capfd):
 def test_four_day_weekends_workdays(capfd):
     four_day_weekends(show_workdays=True)
     output = capfd.readouterr()[0].splitlines()
-    assert len(output) == 24
-    assert "Remaining Work Days: 184 (23 days)" in output[0]
+    assert len(output) == 26
+    assert "Remaining Work Days: 200 (25 days)" in output[0]
     assert output[-1] == "2020-12-31"
 
 
@@ -48,9 +48,9 @@ def test_four_day_weekends_october(capfd):
 def test_four_day_weekends_october_work_days(capfd):
     four_day_weekends(start_month=10, show_workdays=True)
     output = capfd.readouterr()[0].splitlines()
-    assert len(output) == 15
-    assert "(14 days)" in output[0]
-    assert output[10] == "2020-12-10"
+    assert len(output) == 16
+    assert "(15 days)" in output[0]
+    assert output[3] == "2020-10-09"
 
 
 def test_four_day_weekends_less_pto(capfd):
